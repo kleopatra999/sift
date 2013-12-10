@@ -1,5 +1,5 @@
 Source: sift
-Section: forensics
+Section: utils
 Priority: extra
 Maintainer: Erik Kristensen <erik@erikkristensen.com>
 Build-Depends: debhelper (>= 8.0.0)
