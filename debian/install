@@ -8,4 +8,6 @@ usr/share/sift/resources/sift-tool-descriptions.pdf usr/share/sift/resources
 usr/share/sift/resources/windows-to-unix-cheatsheet.pdf usr/share/sift/resources
 usr/share/sift/images/forensics_blue.jpg usr/share/sift/images
 usr/share/sift/images/dfir_logo.png usr/share/sift/images
+usr/share/sift/images/login_logo.png usr/share/sift/images
 usr/share/sift/audio/doink_doink.mp3 usr/share/sift/audio
+usr/share/sift/other/gnome-terminal.desktop usr/share/sift/other

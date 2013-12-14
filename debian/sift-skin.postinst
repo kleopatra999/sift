@@ -1,0 +1,87 @@
+#!/bin/sh -e
+# postinst script for sift
+#
+# see: dh_installdeb(1)
+
+set -e
+
+
+create_sift_user() {
+	if ! getent passwd sift >/dev/null; then
+		adduser --quiet 
+	fi
+}
+
+create_directories() {
+	mkdir -p /cases
+	mkdir -p /mnt/usb
+	mkdir -p /mnt/vss
+	mkdir -p /mnt/shadow
+
+	for NUM in {1..5}
+	do
+		mkdir -p /mnt/windows_mount$NUM
+		mkdir -p /mnt/ewf$NUM
+	done
+ 
+	for NUM in {1..30}
+	do
+		mkdir -p /mnt/shadow/vss$NUM
+	done
+
+  mkdir -p /home/sift/.config/autostart
+}
+
+configure_sift_user() {
+	sudo -u sift gsettings set org.gnome.desktop.background picture-uri file:///usr/share/sift/images/forensics_blue.jpg
+	sudo -u sift dconf write /desktop/unity/launcher/favorites "['nautilus.desktop', 'gnome-terminal.desktop', 'firefox.desktop', 'gnome-screenshot.desktop', 'gcalctool.desktop', 'bless.desktop', 'dff.desktop', 'autopsy.desktop', 'wireshark.desktop']"
+
+	sudo -u sift ln -s /cases /home/sift/Desktop/cases
+	sudo -u sift ln -s /mnt /home/sift/Desktop/mount_points
+  
+  sudo -u sift ln -s /usr/share/sift/resources/dfir-resources.pdf ~/Desktop
+	sudo -u sift ln -s /usr/share/sift/resources/sans-dfir-poster.pdf ~/Desktop
+  sudo -u sift ln -s /usr/share/sift/resources/log2timeline-cheatsheet.pdf ~/Desktop
+  sudo -u sift ln -s /usr/share/sift/resources/memory-forensics-cheatsheet.pdf ~/Desktop
+  sudo -u sift ln -s /usr/share/sift/resources/network-forensics-cheatsheet.pdf ~/Desktop
+  sudo -u sift ln -s /usr/share/sift/resources/sift-cheatsheet.pdf ~/Desktop
+  sudo -u sift ln -s /usr/share/sift/resources/sift-tool-descriptions ~/Desktop
+  sudo -u sift ln -s /usr/share/sift/resources/windows-to-unix-cheatsheet.pdf ~/Deskop
+  
+  sudo -u sift cp /usr/share/sift/other/gnome-terminal.desktop ~/.config/autostart
+}
+
+configure_appliance() {
+	sudo cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.orig
+	sudo cp /usr/share/sift/images/login_logo.png /usr/share/unity-greeter/logo.png
+	gsettings set com.canonical.unity-greeter background file:///usr/share/sift/images/forensics_blue.jpg
+	gsettings set com.canonical.unity-greeter logo file:///usr/share/sift/images/dfir_logo.jpg
+}
+
+#
+# TODO:
+# create softlinks from /usr/share/doc/libparse-win32registry-perl/examples/*.pl to /usr/bin
+# http://search.cpan.org/dist/Parse-Win32Registry/
+#
+
+case "$1" in
+    install)
+      create_sift_user
+      create_directories
+			configure_sift_user
+      configure_appliance
+    ;;
+
+    upgrade)
+		;;
+
+    abort-upgrade)
+    ;;
+
+    *)
+      echo "preinst called with unknown argument \`$1'" >&2
+      exit 1
+    ;;
+esac
+
+exit 0
