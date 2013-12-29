@@ -7,7 +7,12 @@ Standards-Version: 3.9.2
 
 Package: sift
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ::PACKAGES::
-Description: This is the base SIFT Package 
- This is the Base SIFT Package that installs all required dependencies
- to make the SIFT Workstation
+Depends: ::PACKAGES::
+Description: Provides all the necessary tools and packages to transform a system into a SIFT Workstation
+ Provides all the necessary tools and packages to transform a system into a SIFT Workstation
+
+Package: sift-skin
+Architecture: any
+Depends: sift
+Description: Provides the look and feel of a SIFT Workstation
+Provides the look and feel of a SIFT Workstation
