@@ -120,3 +120,6 @@ wine,1.4-0ubuntu4.1
 wireshark,1.6.7-1
 xmount,0.4.5-1
 zenity,3.4.0-0ubuntu4
+wp-scan,2.1
+regripper,2.5
+jd-gui,0.3.5
