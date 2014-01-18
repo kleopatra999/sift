@@ -8,7 +8,7 @@ set -e
 
 create_sift_user() {
 	if ! getent passwd sift >/dev/null; then
-		adduser --quiet 
+		useradd -m -p sift sift
 	fi
 }
 
