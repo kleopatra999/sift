@@ -1,3 +1,11 @@
+sift (3.1-ubuntu1) precise; urgency=low
+
+  * Adding two new pdf files
+  * Updating SANS DFIR Poster
+  * Updating SIFT Cheatsheet
+
+ -- Erik Kristensen <erik@erikkristensen.com>  Mon, 03 Mar 2014 21:52:31 -0500
+
 sift (3.0-ubuntu1) precise; urgency=low
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>

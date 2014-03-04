@@ -7,6 +7,7 @@ Standards-Version: 3.9.2
 
 Package: sift
 Architecture: any
+Depends: 
 Description: Provides all the necessary tools and packages to transform a system into a SIFT Workstation
  Provides all the necessary tools and packages to transform a system into a SIFT Workstation
  
